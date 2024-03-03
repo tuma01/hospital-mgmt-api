@@ -1,0 +1,818 @@
+openapi: 3.0.1
+info:
+  title: Tutorial Management API
+  description: This API exposes endpoints to manage tutorials.
+  termsOfService: https://www.hospital.com/terms
+  contact:
+    name: Amachi
+    url: https://www.hospital.com
+    email: hospital@gmail.com
+  license:
+    name: MIT License
+    url: https://choosealicense.com/licenses/mit/
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Server URL in Development environment
+- url: https://hospital-api.com
+  description: Server URL in Production environment
+tags:
+- name: Country
+  description: Country Entity
+- name: Address
+  description: Address Definitions
+paths:
+  /medical/countries/{id}:
+    get:
+      tags:
+      - Country
+      summary: Retrieve a Country by Id
+      description: "Get a Country object by specifying its id. The response is Country\
+        \ object with id, title, description and published status."
+      operationId: getCountry
+      parameters:
+      - name: id
+        in: path
+        description: Return objet Country
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+      - Country
+      summary: Modifie un Country
+      description: Envoye en tant que body parameters
+      operationId: updateCountry
+      parameters:
+      - name: id
+        in: path
+        description: Modifie objet Country
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountryDTO'
+        required: true
+      responses:
+        "200":
+          description: Country modifie avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+    delete:
+      tags:
+      - Country
+      summary: Supprime un Country
+      description: Envoye en tant que query parameters
+      operationId: deleteCountry
+      parameters:
+      - name: id
+        in: path
+        description: Delete objet Country
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Delete Country appelée avec succes
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                type: object
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                type: object
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                type: object
+  /medical/addresses/{id}:
+    get:
+      tags:
+      - Address
+      summary: Retourne un Address
+      description: Envoye en tant que query parameters
+      operationId: getAddress
+      parameters:
+      - name: id
+        in: path
+        description: Return objet Address
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "200":
+          description: Get Address appelee avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+    put:
+      tags:
+      - Address
+      summary: Modifie un Address
+      description: Envoye en tant que body parameters
+      operationId: updateAddress
+      parameters:
+      - name: id
+        in: path
+        description: Modifie objet Address
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDTO'
+        required: true
+      responses:
+        "200":
+          description: Address modifie avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+    delete:
+      tags:
+      - Address
+      summary: Supprime un Address
+      description: Envoye en tant que query parameters
+      operationId: deleteAddress
+      parameters:
+      - name: id
+        in: path
+        description: Delete objet Address
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Delete Address appelée avec succes
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                type: object
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                type: object
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                type: object
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                type: object
+  /medical/countries:
+    get:
+      tags:
+      - Country
+      summary: Retrieve all Countries
+      operationId: getCountries
+      parameters:
+      - name: countrySearchDTO
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/CountrySearchDTO'
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: There are no Country
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+      - Country
+      summary: Cree un Country
+      description: Envoye en tant que body parameters
+      operationId: addCountry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountryDTO'
+        required: true
+      responses:
+        "200":
+          description: Country cree avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+  /medical/addresses:
+    get:
+      tags:
+      - Address
+      summary: Retourne la liste de Addresses
+      description: Envoye en tant que path variables json format
+      operationId: getAddresses
+      parameters:
+      - name: addressSearchDTO
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/AddressSearchDTO'
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List de Address retournée avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAddressDTO'
+    post:
+      tags:
+      - Address
+      summary: Cree un Address
+      description: Envoye en tant que body parameters
+      operationId: addAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDTO'
+        required: true
+      responses:
+        "200":
+          description: Address cree avec succes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+  /medical/countriesallparams:
+    get:
+      tags:
+      - Country
+      summary: Retourne la liste de Countries
+      description: Envoye en tant que path variables json format
+      operationId: findAllCountries
+      parameters:
+      - name: getCountriesRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/GetCountriesRequest'
+      responses:
+        "200":
+          description: List de Country retournée avec succes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+  /medical/addressesallparams:
+    get:
+      tags:
+      - Address
+      summary: Retourne la liste de Addresses
+      description: Envoye en tant que path variables json format
+      operationId: findAllAddresses
+      responses:
+        "200":
+          description: List de Address retournée avec succes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        "401":
+          description: Non autorise
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        "403":
+          description: Accès refusé
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        "404":
+          description: Page non trouvée
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        "405":
+          description: Entrée invalide
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        "500":
+          description: Le serveur n'a pas répondu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+components:
+  schemas:
+    CountryDTO:
+      required:
+      - codeCountry
+      type: object
+      properties:
+        idCountry:
+          type: integer
+          format: int32
+        codeCountry:
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        codePhone:
+          type: integer
+          format: int32
+        codeAlpha3:
+          type: string
+        codeNumeric:
+          type: integer
+          format: int32
+        nationality:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      description: Créé objet Country
+    AddressDTO:
+      type: object
+      properties:
+        idAddress:
+          type: integer
+          format: int64
+        address1:
+          type: string
+        city:
+          type: string
+        address2:
+          type: string
+        postalCode:
+          type: string
+        location:
+          type: string
+        country:
+          $ref: '#/components/schemas/CountryDTO'
+      description: Créé objet Address
+    GetCountriesRequest:
+      type: object
+      properties:
+        codeCountry:
+          type: string
+        name:
+          type: string
+        nationality:
+          type: string
+    CountrySearchDTO:
+      type: object
+      properties:
+        idCountry:
+          type: integer
+          format: int32
+        codeCountry:
+          type: string
+        name:
+          type: string
+    Country:
+      required:
+      - codeCountry
+      - name
+      - nationality
+      type: object
+      properties:
+        idCountry:
+          type: integer
+          format: int32
+        codeCountry:
+          type: string
+        name:
+          type: string
+        codePhone:
+          type: integer
+          format: int32
+        codeAlpha3:
+          type: string
+        codeNumeric:
+          type: integer
+          format: int32
+        nationality:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    AddressSearchDTO:
+      type: object
+      properties:
+        idAddress:
+          type: integer
+          format: int64
+        address:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+    PageAddressDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressDTO'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
